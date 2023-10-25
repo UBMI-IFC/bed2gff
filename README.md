@@ -31,8 +31,8 @@ Flags
 |----------|-------------|:-------:|:---------:|
 | `-i` | Input BED file name or path/name | - | yes |
 | `-x` | When present script will ignore every column but the first 3 | - | no |
-| `-t {{custom_type_name}}` | This options takes an string to assign a type name to the GFF 3rd column | "peak" | no |
-| `-f {{custom_type_name}}` | This options takes an string to assign a feature name for the unique identifier that will be created at GFF 9th column| "peak" | no |
+| `-t {{custom_type_name}}` | This option takes an string to assign a type name to the GFF 3rd column | "peak" | no |
+| `-f {{custom_feature_name}}` | This option takes an string to assign a feature name for the unique identifier that will be created at GFF 9th column| "peak" | no |
 
 **Note** If a BED file with a "name" (4th) column is used as input file and no `-x` flag is set an additional bedName feature type will be created at GFF 9th field with the correspondent BED file name for every row.
 
