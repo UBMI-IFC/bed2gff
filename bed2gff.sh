@@ -35,20 +35,20 @@ do
 	x) noinfo=true;;
 	t) typeg=$OPTARG;;
 	f) featureg=$OPTARG;;
-	h) echo
-	   echo "${warn}BED to GFF Converter: ${reset}"
-     echo ""
-     echo "Basic usage:"
-	   echo "${info}bed2gff.sh -i[[input bed file]] > [[output GFF]]${reset}"
-     echo ""
-     echo "Additional options"
-	   echo "${info}-x ---- Ignore 4th trough 6th BED file columns${reset}"
-     echo "${info}-t ---- Type column information (default: peak)${reset}"
-     echo "${info}-f ---- Feature column information (default: peak)${reset}"
-	   echo "${info}-h ---- Show this message${reset}"
-	   echo
+	h) >&2 echo
+	   >&2 echo "${warn}BED to GFF Converter: ${reset}"
+     >&2 echo ""
+     >&2 echo "Basic usage:"
+	   >&2 echo "${info}bed2gff.sh -i[[input bed file]] > [[output GFF]]${reset}"
+     >&2 echo ""
+     >&2 echo "Additional options"
+	   >&2 echo "${info}-x ---- Ignore 4th trough 6th BED file columns${reset}"
+     >&2 echo "${info}-t ---- Type column information (default: peak)${reset}"
+     >&2 echo "${info}-f ---- Feature column information (default: peak)${reset}"
+	   >&2 echo "${info}-h ---- Show this message${reset}"
+	   >&2 echo
 	   exit;;
-  *) echo "${error}Run bed2gtf.sh -h for help" 
+  *) >&2 echo "${error}Run bed2gtf.sh -h for help" 
      exit;;
     esac
 done
@@ -56,15 +56,15 @@ done
 # Check that input file is provided
 if [ -z $inputfile ];
   then
-    echo "${error}ERROR: This script requires an input file" 
-    echo ""
-    echo "    ${info}bed2gff -i [[input bed file]] > [[output GFF]]" 
-    echo ''
-    echo "${error}Run bed2gtf.sh -h for help" 
+    >&2 echo "${error}ERROR: This script requires an input file" 
+    >&2 echo ""
+    >&2 echo "    ${info}bed2gff -i [[input bed file]] > [[output GFF]]" 
+    >&2 echo ''
+    >&2 echo "${error}Run bed2gtf.sh -h for help" 
     exit
 elif [ -f $inputfile ]; 
   then
-    >&2 echo "${info}File exist"
+     >&2 echo "${info}File exist"
     cat $inputfile | sed -e 's/\t/%/g' > bed.b2g
     colcount=$(head -1 bed.b2g | tr -cd "%" | wc -c) 
     if [ $colcount -lt 2 ]; then
@@ -82,9 +82,9 @@ elif [ -f $inputfile ];
       mode=$(($colcount+1)) 
     fi
 else
-    echo "${error}ERROR: Input file does not exist, check spelling/path" 
-    echo ""
-    echo "${error}Run bed2gtf.sh -h for help" 
+    >&2 echo "${error}ERROR: Input file does not exist, check spelling/path" 
+    >&2 echo ""
+    >&2 echo "${error}Run bed2gtf.sh -h for help" 
     exit
 fi
 
